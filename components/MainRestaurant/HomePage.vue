@@ -1,41 +1,55 @@
 <template>
   <div>
         <HeaderMenu />
-    <!-- <h1 class="h1"> {{name}} Welcome to Home page</h1> -->
-    <h1 class="h1"> Welcome to Home page</h1>
+    <h1 class="text-center pt-7"> Welcome to Home page</h1>
+     <!-- Tailwind Table Start -->
+     <div class=" mt-6">
+    <table class=" mx-auto w-9/12	 divide-gray-200">
+      <thead class="mx-auto">
+        <tr class="bg-teal-900">
+          <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider border">
+            SerialNo
+          </th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider border">
+            Name
+          </th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider border">
+            Location
+          </th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider border">
+            Number
+          </th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider border">
+            Update
+          </th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider border">
+            Delete
+          </th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        <!-- table data rows here -->
+        <tr v-for="dataa in displayName" :key="dataa.id">
+          <td class="px-6 py-4 whitespace-nowrap border">{{dataa.id}}</td>
+          <td class="px-6 py-4 whitespace-nowrap border">{{dataa.name}}</td>
+          <td class="px-6 py-4 whitespace-nowrap border"> {{dataa.location}}</td>
+          <td class="px-6 py-4 whitespace-nowrap border">{{dataa.number}}</td>
+          <td class="px-6 py-4 whitespace-nowrap border">
+            <button class="text-indigo-600 hover:text-indigo-900">
+              <nuxt-link :to="'/RestaurantData/update-restaurant/' + dataa.id">Update</nuxt-link>
 
-    <table class="table customtable">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">SerialNo</th>
-      <th scope="col">Name</th>
-      <th scope="col">Location</th>
-      <th scope="col">Number</th>
-      <th scope="col">Update</th>
-      <th scope="col">Delete</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr v-for="dataa in displayName" :key="dataa.id">
-        <td>{{dataa.id}}</td>
-        <td>{{dataa.name}}</td>
+              <!-- <nuxt-link :to="'update-restaurant/' + dataa.id">Update</nuxt-link> -->
+            </button>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap border">
+            <button class="text-red-600 hover:text-red-900" v-on:click="DeleteRestaurant(dataa.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-    <td>
-        {{dataa.location}}
-    </td>
-    <td>
-        {{dataa.number}}
-    </td>
-    <td><nuxt-link :to="'/update-restaurant/'+dataa.id">Update</nuxt-link>
-
-</td>
-<td>
-<button class="btn btn-primary" v-on:click="DeleteRestaurant(dataa.id)">Delete</button>
-
-</td>
-    </tr>
-  </tbody>
-</table>
+     <!-- End Here -->
 </div>
 </template>
 <script>
@@ -61,7 +75,7 @@ export default
 
     computed:{
       //computed property updated data ko yahn import kardega.
-      ...mapGetters(["displayName"])
+      ...mapGetters({displayName: "modules/Restaurant/displayName"}),
   
       // mapGetter ke through getter ke andar jo function ha usko import karke phir 
       // store se values display/print kar skta ho.
@@ -69,16 +83,18 @@ export default
     },
     methods:{
 //Sab se pehle api ke through server se data fetch hoga aur phir state store ke andar set karenge
-      ...mapActions(['Restaurant/fetchItems', 'Restaurant/removeItem']),
+      ...mapActions(['modules/Restaurant/fetchItems', 'modules/Restaurant/removeItem']),
 
       fetchItemData()
       {
-        this.$store.dispatch('Restaurant/fetchItems', null, {root:true});
+        this.$store.dispatch('modules/Restaurant/fetchItems', null, {root:true});
       },
       
         async DeleteRestaurant(id)
       {
-        this.removeItem(id);
+        console.log(id);
+        await this.$store.dispatch('modules/Restaurant/removeItem', id, { root: true });
+
         },    
 },
 created() {

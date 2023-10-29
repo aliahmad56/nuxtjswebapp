@@ -1,40 +1,34 @@
 <template>
-  <div>
+  <div class="bg-blue-300	">
   <HeaderMenu />
-  <h2>Enter Your Details to add your Restaurant</h2>
-  <form class="formstyle" @submit.prevent="AddingData()">
-    <div class="custom">
-      <input
-        type="text"
-        class="custom2"
-        v-model="newItem.name"   
-        
-        placeholder="Enter your Restaurant Name"
-      />
-    </div>
-
-    <div class="custom">
-      <input
-        type="text"
-        class="custom2"
-        v-model="newItem.location"
-        placeholder="Enter your Location"
-      />
-    </div>
-
-    <div class="custom">
-      <input
-        type="text"
-        class="custom2"
-        v-model="newItem.number"
-        placeholder="Enter your Phone Number"
-      />
-    </div>
-
-    <button class="btn btn primary custom3" type="submit">
-      Add Restaurant
-    </button>
-  </form>
+  <h2 class="text-center mt-7">Enter Your Details to add your Restaurant</h2>
+  <div class="min-h-screen flex items-center justify-center ">
+    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-1/2"  @submit.prevent="AddingData()">
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="restaurantName">
+          Enter your Restaurant Name
+        </label>
+        <input v-model="newItem.name"  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Restaurant Name">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="location">
+          Enter your Location
+        </label>
+        <input  v-model="newItem.location" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Location">
+      </div>
+      <div class="mb-6">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="phoneNumber">
+          Enter your Phone number
+        </label>
+        <input v-model="newItem.number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Phone Number">
+      </div>
+      <div class="flex items-center justify-between">
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+          Add Restaurant
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
 </template>
 
@@ -57,7 +51,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(["addItem"]),
+    ...mapActions('modules/Restaurant', ['addItem']),
 
     async AddingData() {
       //  e.preventDefault();
@@ -76,24 +70,5 @@ export default {
 </script>
 
 <style>
-.custom {
-  margin-top: 20px;
-}
 
-.custom2 {
-  height: 40px;
-  color: black;
-  border: 0.5px solid black;
-  text-align: center;
-  width: 500px;
-}
-.formstyle {
-  margin-top: 70px;
-}
-
-.custom3 {
-  width: 150px;
-  height: 50px;
-  color: black;
-}
 </style>

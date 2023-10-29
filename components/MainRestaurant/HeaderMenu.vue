@@ -1,10 +1,8 @@
 <template>
     <div class="nav">
-        <!-- <nuxt-link :to="home-page">Home</nuxt-link> -->
-        <!-- <nuxt-link :to="add-restaurant">Add Restaurant</nuxt-link> -->
-
-        <!-- <a class="anchor" v-on:click="Logout">Logout</a> -->
-        
+         <nuxt-link to="home-page">Home</nuxt-link>
+         
+         <nuxt-link to="add-restaurant">Add Restaurant</nuxt-link>         
     </div>
     </template>
     <script>

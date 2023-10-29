@@ -1,31 +1,40 @@
 <template>  
-  <div>
-    <HeaderMenu />
-    <form class="formstyle" @submit.prevent="UpdatedData(restaurant.id)">
-  <div class="custom">
-  <input type="text" class="custom2" v-model="restaurant.name" placeholder="Enter your Restaurant Name">
+  <div class="bg-blue-300	">
+    <div class="min-h-screen flex items-center justify-center ">
+    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-1/2"  @submit.prevent="UpdatedData(restaurant.id)">
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="restaurantName">
+          Update your Restaurant Name
+        </label>
+        <input  v-model="restaurant.name"  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Restaurant Name">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="location">
+          Update your Location
+        </label>
+        <input  v-model="restaurant.location" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Location">
+      </div>
+      <div class="mb-6">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="phoneNumber">
+          Update your Phone number
+        </label>
+        <input v-model="restaurant.number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Phone Number">
+      </div>
+      <div class="flex items-center justify-between">
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+          Update Restaurant
+        </button>
+      </div>
+    </form>
   </div>
-  <div class="custom">
-  <input type="text" class="custom2" v-model="restaurant.location" placeholder="Enter your Location">
-  </div>
-  <div class="custom">
-  <input type="text" class="custom2" v-model="restaurant.number" placeholder="Enter your Phone Number">
-  </div>
-  <button class="btn btn-primary custom3" type="submit" >Update Restaurant</button><br><br>
-  <!-- v-on:click="UpdatedData(restaurant.id)" -->
-  </form>
   </div>
   </template>
   <script>
-  import HeaderMenu from './HeaderMenu.vue'
   import axios from 'axios'
   import { mapActions } from 'vuex'
   export default
   {
   name:'UpdateRestaurant',
-    components:{
-     HeaderMenu
-    },
   
       data(){
         return{
@@ -45,7 +54,7 @@
   },
   
   methods:{
-      ...mapActions(["NewUpdatedData"]),
+    ...mapActions('modules/Restaurant', ['NewUpdatedData']),
   
       async UpdatedData(id)
       {
@@ -61,29 +70,11 @@
   
       if (response.status==200)
         { 
-        
-      this.$router.push({name: 'HomePage'});
+      this.$router.push( "/RestaurantData/home-page");
              
     }
     }
   }
   }
   </script>
-  
-  <style>
-  .customtable{
-  margin-top:80px;
-  margin-left: 30px;
-  margin-right: 30px;
-  width: 1300px;
-  
-  border: solid 1px black;
-  }
-  
-  .custom3{
-  width:200px;
-  height: 50px;
-  color: black;
-  }
-  
-  </style>
+ 

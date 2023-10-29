@@ -56,16 +56,16 @@
   ],
   "restaurant": [
     {
-      "name": "Burger King Master",
-      "location": "Rawalpindi",
-      "number": "0346966333",
-      "id": 1
-    },
-    {
       "name": "Bala Tika House",
       "location": "PWD",
       "number": "34324234",
       "id": 2
+    },
+    {
+      "name": "Ali Resturant",
+      "location": "Lahore",
+      "number": "34324234",
+      "id": 3
     }
   ]
 }

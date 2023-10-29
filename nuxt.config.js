@@ -2,6 +2,10 @@ export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
+  env: {
+    baseUrl: process.env.BASE_URL,
+  },
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'nuxtproject',
@@ -18,21 +22,16 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-
-  layout: {
-    user: '~/layouts/UserLayout.vue',
-    admin: '~/layouts/AdminLayout.vue',
+  
+  router: {
+    extendRoutes(routes, resolve) {
+      routes.push({
+        name: 'update',
+        path: '/restaurantdata/update-restaurant/:id',
+        component: resolve(__dirname, 'pages/restaurantdata/update-restaurant.vue'),
+      });
+    },  
   },
-
-  // router: {
-  //   extendRoutes(routes, resolve) {
-  //     routes.push({
-  //       name: 'home',
-  //       path: '/home',
-  //       component: resolve(__dirname, 'pages/custom.vue'),
-  //     });
-  //   },
-  // },
 
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -58,7 +57,12 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/axios'
   ],
+
+  axios: {
+    baseUrl: process.env.BASE_URL,
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

@@ -5,10 +5,7 @@
         :stringProp="stringData"
         :arrayProp="arrayData"
         :objectProp="objectData"
-        
-        
-        
-        @child-event="handleChildEvent" 
+        @child-event="handleChildEvent"
         />
         <div>
           <h1> Below is the data from child component</h1>
@@ -41,7 +38,7 @@
     },
     methods: {
     handleChildEvent(message) {
-      // Haya fucntion ate tima call boy ki kia wqt ki custom event emitted hoy child child componenta
+      // Haya fucntion ate tima call boy ki kia wqt ki custom event emitted hoy child componenta
       this.messageFromChild = message;
     },
   }
